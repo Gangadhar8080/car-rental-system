@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Invoice | DriveEasy Car Rentals</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/animations.css" />
+<style>
+  .invoice-box { max-width: 700px; margin: 40px auto; background: #fff; padding: 40px; border-radius: 12px; box-shadow: var(--shadow-md); }
+  .invoice-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid var(--color-primary); }
+  .invoice-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+  .invoice-table td { padding: 10px 0; border-bottom: 1px solid var(--color-border); }
+  .invoice-total-row td { font-weight: 700; font-size: 1.2rem; color: var(--color-primary); border-top: 2px solid var(--color-primary); border-bottom: none; }
+  @media print { .no-print { display: none; } .invoice-box { box-shadow: none; margin: 0; } }
+</style>
+</head>
+<body>
+
+<div class="container no-print" style="padding-top:20px;">
+  <button onclick="window.print()" class="btn btn-primary">🖨️ Print / Download</button>
+  <a href="bookings.html" class="btn btn-ghost">← Back to Bookings</a>
+</div>
+
+<div class="invoice-box" id="invoiceBox">
+  <div class="spinner"></div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/auth.js"></script>
+<script>
+async function loadInvoice() {
+  const box = qs('#invoiceBox');
+  const bookingId = getQueryParam('bookingId');
+  if (!bookingId) { box.innerHTML = '<p>No booking specified.</p>'; return; }
+  if (!requireAuth()) return;
+
+  try {
+    const { booking } = await apiRequest(`/bookings/${bookingId}`);
+    const car = booking.carId;
+    const user = booking.userId;
+
+    box.innerHTML = `
+      <div class="invoice-header">
+        <div>
+          <h2 style="color:var(--color-primary);">🚗 DriveEasy Car Rentals</h2>
+          <p class="text-muted">Car Rental Invoice</p>
+        </div>
+        <div style="text-align:right;">
+          <p><strong>Booking ID:</strong> ${booking.bookingId}</p>
+          <p><strong>Date:</strong> ${formatDate(booking.createdAt)}</p>
+          <span class="badge ${statusBadgeClass(booking.status)}">${booking.status}</span>
+        </div>
+      </div>
+
+      <div class="grid-2 mb-24">
+        <div>
+          <h4 class="mb-8">Customer</h4>
+          <p>${user.name}</p>
+          <p>${user.email}</p>
+          <p>${user.phone}</p>
+        </div>
+        <div>
+          <h4 class="mb-8">Vehicle</h4>
+          <p>${car.brand} ${car.model} (${car.year})</p>
+          <p>Pickup: ${formatDate(booking.pickupDate)} — ${booking.pickupLocation}</p>
+          <p>Return: ${formatDate(booking.returnDate)} — ${booking.returnLocation}</p>
+        </div>
+      </div>
+
+      <table class="invoice-table">
+        <tr><td>Rental Charges (${booking.numberOfDays} days × ${formatCurrency(booking.pricePerDay)})</td><td style="text-align:right;">${formatCurrency(booking.subtotal)}</td></tr>
+        <tr><td>Insurance</td><td style="text-align:right;">${formatCurrency(booking.insurance)}</td></tr>
+        ${booking.additionalCharges ? `<tr><td>Additional Charges</td><td style="text-align:right;">${formatCurrency(booking.additionalCharges)}</td></tr>` : ''}
+        <tr><td>Tax</td><td style="text-align:right;">${formatCurrency(booking.tax)}</td></tr>
+        ${booking.discount ? `<tr><td>Discount</td><td style="text-align:right;">-${formatCurrency(booking.discount)}</td></tr>` : ''}
+        <tr class="invoice-total-row"><td>Total Amount</td><td style="text-align:right;">${formatCurrency(booking.totalAmount)}</td></tr>
+      </table>
+
+      <p class="text-muted text-center mt-24">Thank you for choosing DriveEasy Car Rentals.</p>
+    `;
+  } catch (err) {
+    box.innerHTML = `<p>${err.message}</p>`;
+  }
+}
+document.addEventListener('DOMContentLoaded', loadInvoice);
+</script>
+</body>
+</html>

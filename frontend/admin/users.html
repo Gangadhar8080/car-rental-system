@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Manage Users | DriveEasy Admin</title>
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/animations.css" />
+<link rel="stylesheet" href="../css/admin.css" />
+</head>
+<body>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="brand">🚗 DriveEasy Admin</div>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="cars.html">🚘 Manage Cars</a>
+    <a href="bookings.html">📖 Manage Bookings</a>
+    <a href="users.html" class="active">👥 Manage Users</a>
+    <a href="maintenance.html">🔧 Maintenance</a>
+    <div class="section-label">Account</div>
+    <a href="../index.html">🏠 Back to Site</a>
+    <a href="#" id="adminLogoutBtn">🚪 Logout</a>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <div class="flex gap-12" style="align-items:center;">
+        <button class="admin-mobile-toggle">☰</button>
+        <h1>Manage Users</h1>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Status</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="adminUsersTableBody">
+          <tr><td colspan="6"><div class="spinner"></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/animations.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+  qs('#adminLogoutBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+    Storage.clearAll();
+    window.location.href = '../index.html';
+  });
+</script>
+</body>
+</html>

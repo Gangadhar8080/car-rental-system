@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DriveEasy Car Rentals | Rent Your Perfect Car</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/animations.css" />
+<!-- ===== Navbar ===== -->
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">🚗 DriveEasy</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="cars.html">Cars</a></li>
+      <li><a href="index.html#how-it-works">How It Works</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions" id="navActions"></div>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <div class="container">
+    <h1>Rent Your Perfect Car</h1>
+    <p class="subtitle">Affordable. Reliable. Convenient.</p>
+
+    <form class="search-widget" id="heroSearchForm">
+      <div class="form-group">
+        <label for="pickupLocation">Pickup Location</label>
+        <input type="text" id="pickupLocation" placeholder="e.g. Bangalore" />
+      </div>
+      <div class="form-group">
+        <label for="pickupDate">Pickup Date</label>
+        <input type="date" id="pickupDate" />
+      </div>
+      <div class="form-group">
+        <label for="returnDate">Return Date</label>
+        <input type="date" id="returnDate" />
+      </div>
+      <button type="submit" class="btn btn-accent">Search Cars</button>
+    </form>
+  </div>
+</header>
+
+<!-- ===== Stats Strip ===== -->
+<section class="section" style="padding:36px 0;">
+  <div class="container">
+    <div class="stats-grid reveal-stagger">
+      <div class="card stat-card text-center"><div class="stat-value counter" data-target="50" data-suffix="+">0</div><div class="stat-label">Cars in Fleet</div></div>
+      <div class="card stat-card text-center"><div class="stat-value counter" data-target="320" data-suffix="+">0</div><div class="stat-label">Happy Users</div></div>
+      <div class="card stat-card text-center"><div class="stat-value counter" data-target="850" data-suffix="+">0</div><div class="stat-label">Bookings</div></div>
+      <div class="card stat-card text-center"><div class="stat-value counter" data-target="24" data-suffix="/7">0</div><div class="stat-label">Support</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Featured Cars ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Featured <span class="text-gradient">Cars</span></h2>
+      <p>Hand-picked vehicles ready for your next trip.</p>
+    </div>
+    <div class="cars-grid reveal-stagger" id="featuredCarsGrid">
+      <div class="skeleton skeleton-card"></div>
+      <div class="skeleton skeleton-card"></div>
+      <div class="skeleton skeleton-card"></div>
+    </div>
+    <div class="text-center mt-32 reveal">
+      <a href="cars.html" class="btn btn-outline">View All Cars</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== How It Works ===== -->
+<section class="section" id="how-it-works" style="background:var(--color-surface);">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>How It Works</h2>
+      <p>Booking a car takes less than five minutes.</p>
+    </div>
+    <div class="stats-grid reveal-stagger">
+      <div class="card text-center">
+        <h3>1. Search</h3>
+        <p class="mt-8">Choose your pickup location and rental dates to see available cars.</p>
+      </div>
+      <div class="card text-center">
+        <h3>2. Book</h3>
+        <p class="mt-8">Pick a car, review the price breakdown, and confirm your booking.</p>
+      </div>
+      <div class="card text-center">
+        <h3>3. Drive</h3>
+        <p class="mt-8">Pick up your car on the scheduled date and enjoy the ride.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Why Choose Us ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>Why Choose DriveEasy</h2>
+    </div>
+    <div class="stats-grid reveal-stagger">
+      <div class="card"><h3>Wide Fleet</h3><p class="mt-8">From compact hatchbacks to premium SUVs and EVs.</p></div>
+      <div class="card"><h3>Transparent Pricing</h3><p class="mt-8">No hidden charges — see the full breakdown before you confirm.</p></div>
+      <div class="card"><h3>24/7 Support</h3><p class="mt-8">Our team is available around the clock for any assistance.</p></div>
+      <div class="card"><h3>Flexible Cancellation</h3><p class="mt-8">Cancel eligible bookings anytime before the cancellation window.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>DriveEasy</h4>
+        <p style="color:#b6d2c6; font-size:0.9rem;">Your trusted car rental partner for every journey.</p>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="cars.html">Browse Cars</a>
+        <a href="register.html">Create Account</a>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <a href="contact.html">Help Center</a>
+        <a href="contact.html">Terms & Conditions</a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 DriveEasy Car Rentals. All rights reserved.</div>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+<script src="js/api.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/cars.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    loadFeaturedCars();
+
+    // Animate the stats strip counters once it scrolls into view
+    const statsSection = qs('.counter')?.closest('section');
+    if (statsSection && 'IntersectionObserver' in window) {
+      const counterObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounters();
+            obs.disconnect();
+          }
+        });
+      }, { threshold: 0.4 });
+      counterObserver.observe(statsSection);
+    } else {
+      animateCounters();
+    }
+
+    qs('#heroSearchForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const params = new URLSearchParams();
+      const location = qs('#pickupLocation').value.trim();
+      const pickupDate = qs('#pickupDate').value;
+      const returnDate = qs('#returnDate').value;
+      if (location) params.set('location', location);
+      if (pickupDate) params.set('pickupDate', pickupDate);
+      if (returnDate) params.set('returnDate', returnDate);
+      window.location.href = `cars.html?${params.toString()}`;
+    });
+  });
+</script>
+</body>
+</html>

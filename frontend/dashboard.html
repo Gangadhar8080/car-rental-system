@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Dashboard | DriveEasy Car Rentals</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/animations.css" />
+<link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">🚗 DriveEasy</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cars.html">Cars</a></li>
+      <li><a href="dashboard.html" class="active">Dashboard</a></li>
+    </ul>
+    <div class="nav-actions" id="navActions"></div>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<div class="container section">
+  <div class="dash-layout">
+    <aside class="dash-sidebar">
+      <a href="dashboard.html" class="active">🏠 Overview</a>
+      <a href="bookings.html">📖 My Bookings</a>
+      <a href="profile.html">👤 Profile</a>
+      <a href="cars.html">🚗 Browse Cars</a>
+    </aside>
+
+    <main class="dash-main">
+      <div class="dash-welcome animate-in">
+        <h1>Welcome, <span id="welcomeName">there</span></h1>
+        <p>Here's an overview of your rentals.</p>
+      </div>
+
+      <div class="stats-grid reveal-stagger mb-24">
+        <div class="card stat-card"><div class="stat-value" id="statTotal">0</div><div class="stat-label">Total Bookings</div></div>
+        <div class="card stat-card"><div class="stat-value" id="statActive">0</div><div class="stat-label">Active</div></div>
+        <div class="card stat-card"><div class="stat-value" id="statCompleted">0</div><div class="stat-label">Completed</div></div>
+        <div class="card stat-card"><div class="stat-value" id="statCancelled">0</div><div class="stat-label">Cancelled</div></div>
+      </div>
+
+      <h3 class="mb-16">Upcoming Booking</h3>
+      <div id="upcomingBooking"><div class="spinner"></div></div>
+    </main>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

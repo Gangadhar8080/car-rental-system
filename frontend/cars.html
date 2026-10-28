@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Browse Cars | DriveEasy Car Rentals</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">🚗 DriveEasy</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cars.html" class="active">Cars</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions" id="navActions"></div>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<div class="container page-header animate-in">
+  <h1>Browse Our Fleet</h1>
+  <p>Search, filter, and find the perfect car for your trip.</p>
+</div>
+
+<div class="container">
+  <form class="filters-bar reveal" id="filtersForm">
+    <div class="form-group">
+      <label>Search</label>
+      <input type="text" id="filterSearch" placeholder="Brand or model" />
+    </div>
+    <div class="form-group">
+      <label>Brand</label>
+      <input type="text" id="filterBrand" placeholder="e.g. Toyota" />
+    </div>
+    <div class="form-group">
+      <label>Location</label>
+      <input type="text" id="filterLocation" placeholder="e.g. Bangalore" />
+    </div>
+    <div class="form-group">
+      <label>Fuel Type</label>
+      <select id="filterFuelType">
+        <option value="">Any</option>
+        <option>Petrol</option>
+        <option>Diesel</option>
+        <option>Electric</option>
+        <option>Hybrid</option>
+        <option>CNG</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Transmission</label>
+      <select id="filterTransmission">
+        <option value="">Any</option>
+        <option>Automatic</option>
+        <option>Manual</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Min Seats</label>
+      <select id="filterSeats">
+        <option value="">Any</option>
+        <option value="2">2+</option>
+        <option value="4">4+</option>
+        <option value="5">5+</option>
+        <option value="7">7+</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Min Price / Day</label>
+      <input type="number" id="filterMinPrice" placeholder="₹0" min="0" />
+    </div>
+    <div class="form-group">
+      <label>Max Price / Day</label>
+      <input type="number" id="filterMaxPrice" placeholder="₹10000" min="0" />
+    </div>
+    <div class="form-group">
+      <label>Sort By</label>
+      <select id="filterSort">
+        <option value="newest">Newest Cars</option>
+        <option value="price_asc">Price: Low → High</option>
+        <option value="price_desc">Price: High → Low</option>
+      </select>
+    </div>
+    <div class="flex gap-8" style="align-items:flex-end;">
+      <button type="submit" class="btn btn-primary">Apply Filters</button>
+      <button type="button" id="resetFiltersBtn" class="btn btn-ghost">Reset</button>
+    </div>
+  </form>
+</div>
+
+<div class="container section" style="padding-top:10px;">
+  <div class="cars-grid" id="carsGrid">
+    <div class="spinner"></div>
+  </div>
+  <div class="flex-center gap-8 mt-32" id="pagination"></div>
+</div>
+
+<footer>
+  <div class="container footer-bottom">&copy; 2026 DriveEasy Car Rentals. All rights reserved.</div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/cars.js"></script>
+</body>
+</html>

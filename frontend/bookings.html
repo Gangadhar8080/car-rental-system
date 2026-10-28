@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Bookings | DriveEasy Car Rentals</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/animations.css" />
+<link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">🚗 DriveEasy</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cars.html">Cars</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+    </ul>
+    <div class="nav-actions" id="navActions"></div>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<div class="container section">
+  <div class="dash-layout">
+    <aside class="dash-sidebar">
+      <a href="dashboard.html">🏠 Overview</a>
+      <a href="bookings.html" class="active">📖 My Bookings</a>
+      <a href="profile.html">👤 Profile</a>
+      <a href="cars.html">🚗 Browse Cars</a>
+    </aside>
+
+    <main class="dash-main">
+      <div class="flex-between mb-24">
+        <h1>My Bookings</h1>
+        <select id="statusFilter" style="width:auto;">
+          <option value="">All Statuses</option>
+          <option>Pending</option>
+          <option>Confirmed</option>
+          <option>Active</option>
+          <option>Completed</option>
+          <option>Cancelled</option>
+          <option>Rejected</option>
+        </select>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Booking ID</th><th>Car</th><th>Pickup</th><th>Return</th><th>Amount</th><th>Status</th><th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="bookingsTableBody">
+            <tr><td colspan="7"><div class="spinner"></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/bookings-list.js"></script>
+</body>
+</html>

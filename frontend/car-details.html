@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Car Details | DriveEasy Car Rentals</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">🚗 DriveEasy</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cars.html" class="active">Cars</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions" id="navActions"></div>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<div class="container section" id="carDetailsContainer">
+  <div class="spinner"></div>
+</div>
+
+<footer>
+  <div class="container footer-bottom">&copy; 2026 DriveEasy Car Rentals. All rights reserved.</div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/auth.js"></script>
+<script>
+async function loadCarDetails() {
+  const container = qs('#carDetailsContainer');
+  const carId = getQueryParam('id');
+
+  if (!carId) {
+    container.innerHTML = `<div class="empty-state"><p>No car specified.</p></div>`;
+    return;
+  }
+
+  try {
+    const { car } = await apiRequest(`/cars/${carId}`, { auth: false });
+    const img = car.images && car.images[0] ? car.images[0] : 'https://via.placeholder.com/700x420?text=No+Image';
+    const isAvailable = car.status === 'Available';
+
+    container.innerHTML = `
+      <div class="grid-2">
+        <div>
+          <img src="${img}" alt="${car.brand} ${car.model}" style="width:100%;border-radius:16px;object-fit:cover;max-height:420px;" />
+          ${car.images && car.images.length > 1 ? `
+            <div class="flex gap-8 mt-16" style="overflow-x:auto;">
+              ${car.images.map((i) => `<img src="${i}" style="width:90px;height:70px;object-fit:cover;border-radius:8px;flex-shrink:0;" />`).join('')}
+            </div>` : ''}
+        </div>
+        <div>
+          <div class="flex-between mb-8">
+            <h1>${car.brand} ${car.model}</h1>
+            <span class="badge ${statusBadgeClass(car.status)}">${car.status}</span>
+          </div>
+          <p class="mb-16">${car.year} · ${car.fuelType} · ${car.transmission} · ${car.seats} Seats · ${car.mileage || 'N/A'}</p>
+          <p class="mb-16">📍 ${car.location}</p>
+          <div class="car-card-price mb-24">${formatCurrency(car.pricePerDay)} <span>/ day</span></div>
+
+          <h3 class="mb-8">Description</h3>
+          <p class="mb-24">${car.description || 'No description available.'}</p>
+
+          <h3 class="mb-8">Features</h3>
+          <div class="flex gap-12 mb-24" style="flex-wrap:wrap;">
+            ${(car.features && car.features.length ? car.features : ['No listed features']).map((f) => `<span class="badge badge-info">✓ ${f}</span>`).join('')}
+          </div>
+
+          <a href="${isAvailable ? `booking.html?carId=${car._id}` : '#'}"
+             class="btn btn-primary btn-block" ${isAvailable ? '' : 'style="pointer-events:none;opacity:0.5;"'}>
+             ${isAvailable ? 'Book This Car' : `Currently ${car.status}`}
+          </a>
+        </div>
+      </div>
+    `;
+  } catch (err) {
+    container.innerHTML = `<div class="empty-state"><p>${err.message}</p></div>`;
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadCarDetails);
+</script>
+</body>
+</html>

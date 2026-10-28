@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vehicle Maintenance | DriveEasy Admin</title>
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/animations.css" />
+<link rel="stylesheet" href="../css/admin.css" />
+</head>
+<body>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="brand">🚗 DriveEasy Admin</div>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="cars.html">🚘 Manage Cars</a>
+    <a href="bookings.html">📖 Manage Bookings</a>
+    <a href="users.html">👥 Manage Users</a>
+    <a href="maintenance.html" class="active">🔧 Maintenance</a>
+    <div class="section-label">Account</div>
+    <a href="../index.html">🏠 Back to Site</a>
+    <a href="#" id="adminLogoutBtn">🚪 Logout</a>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <div class="flex gap-12" style="align-items:center;">
+        <button class="admin-mobile-toggle">☰</button>
+        <h1>Vehicle Maintenance</h1>
+      </div>
+      <button class="btn btn-primary" onclick="openAddMaintenanceModal()">+ Schedule Maintenance</button>
+    </div>
+
+    <p class="text-muted mb-16">A car scheduled for maintenance is automatically marked unavailable for booking until completed.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Car</th><th>Type</th><th>Dates</th><th>Cost</th><th>Status</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="maintenanceTableBody">
+          <tr><td colspan="6"><div class="spinner"></div></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- Add Maintenance Modal -->
+<div class="modal-overlay" id="maintenanceModalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Schedule Maintenance</h3>
+      <button class="modal-close" onclick="closeMaintenanceModal()">&times;</button>
+    </div>
+    <form id="maintenanceForm">
+      <div class="form-group mb-16">
+        <label>Vehicle</label>
+        <select id="mf_carId" required></select>
+      </div>
+      <div class="form-group mb-16">
+        <label>Maintenance Type</label>
+        <select id="mf_type" required>
+          <option>Service</option><option>Repair</option><option>Cleaning</option><option>Inspection</option><option>Other</option>
+        </select>
+      </div>
+      <div class="form-group mb-16">
+        <label>Description</label>
+        <textarea id="mf_description" rows="3"></textarea>
+      </div>
+      <div class="form-row-2 mb-16" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div class="form-group"><label>Start Date</label><input type="date" id="mf_startDate" required /></div>
+        <div class="form-group"><label>End Date</label><input type="date" id="mf_endDate" required /></div>
+      </div>
+      <div class="form-group mb-16"><label>Cost (₹)</label><input type="number" id="mf_cost" min="0" /></div>
+      <button type="submit" class="btn btn-primary btn-block">Save Record</button>
+    </form>
+  </div>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/animations.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+  qs('#adminLogoutBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+    Storage.clearAll();
+    window.location.href = '../index.html';
+  });
+</script>
+</body>
+</html>

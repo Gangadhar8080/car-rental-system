@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact Us | DriveEasy Car Rentals</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">🚗 DriveEasy</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cars.html">Cars</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <div class="nav-actions" id="navActions"></div>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <h1>Get In Touch</h1>
+    <p class="subtitle">Questions about a booking or our fleet? We're here to help.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container grid-2">
+    <div class="card">
+      <h3 class="mb-16">Send us a message</h3>
+      <form id="contactForm" class="auth-form">
+        <div class="form-group">
+          <label for="cName">Full Name</label>
+          <input type="text" id="cName" required />
+        </div>
+        <div class="form-group">
+          <label for="cEmail">Email Address</label>
+          <input type="email" id="cEmail" required />
+        </div>
+        <div class="form-group">
+          <label for="cSubject">Subject</label>
+          <input type="text" id="cSubject" required />
+        </div>
+        <div class="form-group">
+          <label for="cMessage">Message</label>
+          <textarea id="cMessage" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+
+    <div>
+      <h3 class="mb-16">Contact Information</h3>
+      <div class="card mb-16"><strong>📍 Address</strong><p class="mt-8">123 MG Road, Bangalore, Karnataka, India</p></div>
+      <div class="card mb-16"><strong>📞 Phone</strong><p class="mt-8">+91 80 1234 5678</p></div>
+      <div class="card mb-16"><strong>✉️ Email</strong><p class="mt-8">support@driveeasy.example</p></div>
+      <div class="card"><strong>🕒 Hours</strong><p class="mt-8">Mon–Sun: 24/7 Support</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-bottom">&copy; 2026 DriveEasy Car Rentals. All rights reserved.</div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/auth.js"></script>
+<script>
+  // Note: this is a demo form with no backend endpoint wired up (not part of the
+  // spec's API list). It validates client-side and shows a confirmation toast.
+  qs('#contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    showToast("Message sent! We'll get back to you soon.", 'success');
+    e.target.reset();
+  });
+</script>
+</body>
+</html>

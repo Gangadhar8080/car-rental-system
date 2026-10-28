@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Book a Car | DriveEasy Car Rentals</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">🚗 DriveEasy</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cars.html">Cars</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions" id="navActions"></div>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<div class="container page-header">
+  <h1>Complete Your Booking</h1>
+  <p>Select your rental dates and review the price before confirming.</p>
+</div>
+
+<div class="container section" style="padding-top:10px;" id="bookingContainer">
+  <div class="grid-2 reveal-stagger">
+    <div class="card" id="carSummary"><div class="spinner"></div></div>
+
+    <div class="card">
+      <form id="bookingForm">
+        <div class="form-row-2" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div class="form-group">
+            <label for="pickupDate">Pickup Date</label>
+            <input type="date" id="pickupDate" required />
+          </div>
+          <div class="form-group">
+            <label for="returnDate">Return Date</label>
+            <input type="date" id="returnDate" required />
+          </div>
+        </div>
+        <div class="error-text" id="dateError"></div>
+
+        <div class="form-row-2 mt-8" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          <div class="form-group">
+            <label for="pickupLocation">Pickup Location</label>
+            <input type="text" id="pickupLocation" placeholder="Defaults to car's location" />
+          </div>
+          <div class="form-group">
+            <label for="returnLocation">Return Location</label>
+            <input type="text" id="returnLocation" placeholder="Defaults to car's location" />
+          </div>
+        </div>
+
+        <div class="flex gap-8 mt-16" style="align-items:center;">
+          <input type="checkbox" id="additionalDriver" style="width:auto;" />
+          <label for="additionalDriver" style="font-weight:500;">Add an additional driver (+₹200/day)</label>
+        </div>
+
+        <div class="divider"></div>
+        <h3 class="mb-16">Price Breakdown</h3>
+        <div id="priceBreakdown" class="mb-24"><p class="text-muted">Select your dates to see pricing.</p></div>
+
+        <button type="submit" class="btn btn-primary btn-block" id="confirmBookingBtn" disabled>Confirm Booking</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container footer-bottom">&copy; 2026 DriveEasy Car Rentals. All rights reserved.</div>
+</footer>
+
+<script src="js/api.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/booking.js"></script>
+</body>
+</html>

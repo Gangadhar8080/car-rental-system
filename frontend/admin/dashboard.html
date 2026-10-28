@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Dashboard | DriveEasy Car Rentals</title>
+<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/animations.css" />
+<link rel="stylesheet" href="../css/admin.css" />
+</head>
+<body>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="brand">🚗 DriveEasy Admin</div>
+    <a href="dashboard.html" class="active">📊 Dashboard</a>
+    <a href="cars.html">🚘 Manage Cars</a>
+    <a href="bookings.html">📖 Manage Bookings</a>
+    <a href="users.html">👥 Manage Users</a>
+    <a href="maintenance.html">🔧 Maintenance</a>
+    <div class="section-label">Account</div>
+    <a href="../index.html">🏠 Back to Site</a>
+    <a href="#" id="adminLogoutBtn">🚪 Logout</a>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <div class="flex gap-12" style="align-items:center;">
+        <button class="admin-mobile-toggle">☰</button>
+        <h1>Dashboard</h1>
+      </div>
+      <span class="text-muted" id="adminUserLabel"></span>
+    </div>
+
+    <div class="stats-grid reveal-stagger">
+      <div class="card stat-card"><div class="stat-value" id="statTotalCars">0</div><div class="stat-label">Total Cars</div></div>
+      <div class="card stat-card"><div class="stat-value" id="statTotalUsers">0</div><div class="stat-label">Total Users</div></div>
+      <div class="card stat-card"><div class="stat-value" id="statTotalBookings">0</div><div class="stat-label">Bookings</div></div>
+      <div class="card stat-card"><div class="stat-value" id="statActiveRentals">0</div><div class="stat-label">Active Rentals</div></div>
+      <div class="card stat-card"><div class="stat-value" id="statAvailableCars">0</div><div class="stat-label">Available Cars</div></div>
+      <div class="card stat-card"><div class="stat-value" id="statRevenue">₹0</div><div class="stat-label">Revenue</div></div>
+    </div>
+
+    <div class="chart-grid reveal-stagger">
+      <div class="chart-card">
+        <h3 class="mb-16">Monthly Revenue</h3>
+        <div id="monthlyChart"><div class="spinner"></div></div>
+      </div>
+      <div class="chart-card">
+        <h3 class="mb-16">Bookings by Status</h3>
+        <div id="statusChart"><div class="spinner"></div></div>
+      </div>
+      <div class="chart-card">
+        <h3 class="mb-16">Most Rented Cars</h3>
+        <div id="mostRentedList"><div class="spinner"></div></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/animations.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/admin.js"></script>
+<script>
+  qs('#adminLogoutBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+    Storage.clearAll();
+    window.location.href = '../index.html';
+  });
+</script>
+</body>
+</html>
